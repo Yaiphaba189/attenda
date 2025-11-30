@@ -1,0 +1,18 @@
+{
+  "name": "attenda-backend",
+  "version": "1.0.0",
+  "description": "Basic Express.js backend for Attenda project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.11.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "prisma": "^6.11.1"
+  }
+}
