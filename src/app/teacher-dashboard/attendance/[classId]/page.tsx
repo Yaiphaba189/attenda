@@ -86,35 +86,39 @@ export default function AttendancePage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 p-6">
-      <Card className="max-w-xl mx-auto mt-10">
-        <CardContent>
-          <h2 className="text-2xl font-bold mb-4 text-red-500">Mark Attendance</h2>
-          <div className="mb-4">
-            <label className="block font-semibold mb-1 text-black">Select Subject:</label>
-            <select
-              className="border px-3 py-2 rounded w-full text-black"
-              value={selectedSubjectId}
-              onChange={(e) => setSelectedSubjectId(e.target.value)}
-              disabled={subjects.length === 0}
-            >
-              {subjects.length === 0 && <option>No subjects available</option>}
-              {subjects.map((subj: any) => (
-                <option key={subj.id} value={subj.id}>{subj.name}</option>
-              ))}
-            </select>
+    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900 via-green-950 to-black p-6">
+      <div className="max-w-4xl w-full mx-auto my-12">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-8">
+          <h2 className="text-2xl font-bold mb-6 text-white">Mark Attendance</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div>
+              <label className="block font-semibold mb-2 text-green-100">Select Subject:</label>
+              <select
+                className="w-full bg-black/20 border border-green-800/50 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-green-500 outline-none transition-all"
+                value={selectedSubjectId}
+                onChange={(e) => setSelectedSubjectId(e.target.value)}
+                disabled={subjects.length === 0}
+              >
+                {subjects.length === 0 && <option className="bg-green-950">No subjects available</option>}
+                {subjects.map((subj: any) => (
+                  <option key={subj.id} value={subj.id} className="bg-green-950">{subj.name}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block font-semibold mb-2 text-green-100">Select Date:</label>
+              <input
+                type="date"
+                className="w-full bg-black/20 border border-green-800/50 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-green-500 outline-none transition-all [color-scheme:dark]"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block font-semibold mb-1 text-black">Select Date:</label>
-            <input
-              type="date"
-              className="border px-3 py-2 rounded w-full text-black"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
+
           {loading ? (
-            <div>Loading students...</div>
+            <div className="text-center py-12 text-green-400">Loading students...</div>
           ) : (
             <form
               onSubmit={e => {
@@ -122,46 +126,55 @@ export default function AttendancePage() {
                 handleSave();
               }}
             >
-              <table className="w-full mb-4">
-                <thead>
-                  <tr>
-                    <th className="text-left text-black">Student</th>
-                    <th className="text-black">Status</th>
-                    <th className="text-black">Attendance %</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {students.map((s: any) => (
-                    <tr key={s.id}>
-                      <td className="text-black">{s.name}</td>
-                      <td>
-                        <select
-                          className="border px-2 py-1 rounded text-black"
-                          value={attendance[s.id] || "Present"}
-                          onChange={e => handleStatusChange(s.id, e.target.value)}
-                        >
-                          <option value="Present">Present</option>
-                          <option value="Absent">Absent</option>
-                          <option value="Late">Late</option>
-                          <option value="Leave">Leave</option>
-                        </select>
-                      </td>
-                      <td className="text-black">{percentages[s.id] ?? "-"}%</td>
+              <div className="overflow-x-auto rounded-lg border border-white/10 mb-8">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-white/5 text-green-400 border-b border-white/10">
+                      <th className="text-left px-4 py-3 font-semibold">Student</th>
+                      <th className="text-left px-4 py-3 font-semibold">Status</th>
+                      <th className="text-left px-4 py-3 font-semibold">Attendance %</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              <Button
-                type="submit"
-                className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg border-2 border-red-700 text-lg transition-all duration-200"
-                disabled={!selectedSubjectId}
-              >
-                Save Attendance
-              </Button>
+                  </thead>
+                  <tbody className="divide-y divide-white/5">
+                    {students.map((s: any) => (
+                      <tr key={s.id} className="hover:bg-white/5 transition-colors">
+                        <td className="px-4 py-3 text-white font-medium">{s.name}</td>
+                        <td className="px-4 py-3">
+                          <select
+                            className={`border-0 rounded-lg px-3 py-1 text-sm font-medium focus:ring-2 focus:ring-green-500 outline-none cursor-pointer transition-colors ${attendance[s.id] === "Present" ? "bg-green-500/20 text-green-400" :
+                                attendance[s.id] === "Absent" ? "bg-red-500/20 text-red-400" :
+                                  attendance[s.id] === "Late" ? "bg-yellow-500/20 text-yellow-400" :
+                                    "bg-blue-500/20 text-blue-400"
+                              }`}
+                            value={attendance[s.id] || "Present"}
+                            onChange={e => handleStatusChange(s.id, e.target.value)}
+                          >
+                            <option value="Present" className="bg-green-950 text-green-400">Present</option>
+                            <option value="Absent" className="bg-green-950 text-red-400">Absent</option>
+                            <option value="Late" className="bg-green-950 text-yellow-400">Late</option>
+                            <option value="Leave" className="bg-green-950 text-blue-400">Leave</option>
+                          </select>
+                        </td>
+                        <td className="px-4 py-3 text-gray-300">{percentages[s.id] ?? "-"}%</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="flex justify-end">
+                <Button
+                  type="submit"
+                  className="bg-green-600 hover:bg-green-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-green-900/20 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
+                  disabled={!selectedSubjectId}
+                >
+                  Save Attendance
+                </Button>
+              </div>
             </form>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

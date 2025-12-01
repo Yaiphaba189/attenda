@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const prisma = require('./prisma');
@@ -157,9 +158,9 @@ app.post('/login', async (req, res) => {
     const { password: _, ...userData } = user;
     userData.role = user.role.name;
     res.json({ success: true, user: userData });
-} catch (err) {
-  res.status(500).json({ success: false, error: err.message });
-}
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 

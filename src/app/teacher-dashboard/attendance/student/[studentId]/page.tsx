@@ -57,50 +57,68 @@ export default function StudentAttendancePage() {
   }, [studentId, classId, month]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 p-6">
-      <Card className="mb-6">
-        <CardContent className="p-6">
-          <h2 className="text-2xl font-bold mb-2 text-red-600">Student Attendance</h2>
-          <div className="mb-4">
-            <label className="mr-2 font-semibold text-black">Month:</label>
-            <input
-              type="month"
-              value={month}
-              onChange={e => setMonth(e.target.value)}
-              className="border px-2 py-1 rounded text-black font-semibold"
-            />
-          </div>
-          {percentage !== null && (
-            <div className="mb-4 text-lg font-semibold text-green-700">
-              Attendance Percentage: {percentage}%
+    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900 via-green-950 to-black p-6">
+      <div className="max-w-4xl w-full mx-auto my-12">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-8">
+          <h2 className="text-2xl font-bold mb-6 text-white">Student Attendance</h2>
+
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <label className="font-semibold text-green-100">Month:</label>
+              <input
+                type="month"
+                value={month}
+                onChange={e => setMonth(e.target.value)}
+                className="bg-black/20 border border-green-800/50 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-green-500 outline-none transition-all [color-scheme:dark]"
+              />
             </div>
-          )}
-          <table className="min-w-full text-sm bg-white rounded shadow">
-            <thead>
-              <tr className="text-left text-gray-600">
-                <th className="py-2 px-3">Date</th>
-                <th className="py-2 px-3">Subject</th>
-                <th className="py-2 px-3">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr><td colSpan={3} className="text-center py-4">Loading...</td></tr>
-              ) : records.length === 0 ? (
-                <tr><td colSpan={3} className="text-center py-4">No attendance records found.</td></tr>
-              ) : (
-                records.map((rec) => (
-                  <tr key={rec.id}>
-                    <td className="py-1 px-3 text-black font-semibold">{rec.date.slice(0, 10)}</td>
-                    <td className="py-1 px-3 text-black font-semibold">{rec.subject?.name || '-'}</td>
-                    <td className="py-1 px-3 text-black font-semibold">{rec.status}</td>
+            {percentage !== null && (
+              <div className="text-lg font-bold text-green-400 bg-green-500/10 px-4 py-2 rounded-lg border border-green-500/20">
+                Attendance: {percentage}%
+              </div>
+            )}
+          </div>
+
+          <div className="overflow-x-auto rounded-lg border border-white/10">
+            <table className="min-w-full text-sm">
+              <thead>
+                <tr className="bg-white/5 text-green-400 border-b border-white/10">
+                  <th className="py-3 px-4 text-left font-semibold">Date</th>
+                  <th className="py-3 px-4 text-left font-semibold">Subject</th>
+                  <th className="py-3 px-4 text-left font-semibold">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {loading ? (
+                  <tr>
+                    <td colSpan={3} className="text-center py-8 text-green-400">Loading...</td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </CardContent>
-      </Card>
+                ) : records.length === 0 ? (
+                  <tr>
+                    <td colSpan={3} className="text-center py-8 text-gray-400">No attendance records found.</td>
+                  </tr>
+                ) : (
+                  records.map((rec) => (
+                    <tr key={rec.id} className="hover:bg-white/5 transition-colors">
+                      <td className="py-3 px-4 text-white font-medium">{rec.date.slice(0, 10)}</td>
+                      <td className="py-3 px-4 text-gray-300">{rec.subject?.name || '-'}</td>
+                      <td className="py-3 px-4">
+                        <span className={`inline-block px-3 py-1 rounded-lg text-sm font-medium ${rec.status === "Present" ? "bg-green-500/20 text-green-400 border border-green-500/30" :
+                            rec.status === "Absent" ? "bg-red-500/20 text-red-400 border border-red-500/30" :
+                              rec.status === "Late" ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30" :
+                                "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                          }`}>
+                          {rec.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

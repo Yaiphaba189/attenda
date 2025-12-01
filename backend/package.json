@@ -14,5 +14,8 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
     "prisma": "^6.11.1"
+  },
+  "devDependencies": {
+    "baseline-browser-mapping": "^2.8.32"
   }
 }

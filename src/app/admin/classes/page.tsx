@@ -131,16 +131,18 @@ export default function ManageClasses() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 p-8">
-      <Card className="max-w-2xl mx-auto bg-white/80 backdrop-blur-sm border-pink-100 shadow-sm">
-        <CardContent className="p-8">
+    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900 via-green-950 to-black p-4">
+      <div className="max-w-4xl w-full mx-auto my-12">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-3">
-              <Calendar className="w-7 h-7 text-red-600" />
-              <h2 className="text-2xl font-bold text-red-600" style={{ color: '#dc2626' }}>Manage Classes</h2>
+              <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
+                <Calendar className="w-6 h-6 text-green-400" />
+              </div>
+              <h2 className="text-2xl font-bold text-white">Manage Classes</h2>
             </div>
             <Button
-              className="bg-red-600 hover:bg-red-700 text-white rounded-xl"
+              className="bg-green-600 hover:bg-green-500 text-white rounded-xl px-4 py-2 shadow-lg shadow-green-900/20 hover:scale-105 transition-all duration-300"
               onClick={() => setShowAdd(v => !v)}
             >
               <Plus className="w-5 h-5 mr-1" /> Add Class
@@ -148,30 +150,30 @@ export default function ManageClasses() {
           </div>
 
           {showAdd && (
-            <form onSubmit={handleAdd} className="p-8 rounded-lg flex flex-col gap-4 mb-6">
-              <div className="flex flex-col gap-6 mb-2">
+            <form onSubmit={handleAdd} className="bg-black/20 p-6 rounded-xl border border-white/5 flex flex-col gap-4 mb-8 animate-fade-in-down">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
                   placeholder="Class Name"
-                  className="border border-gray-400 rounded px-3 py-2 text-black"
+                  className="border border-green-800/50 rounded-lg px-3 py-2 bg-black/20 text-white focus:ring-2 focus:ring-green-500 outline-none placeholder-green-700/50 transition-all"
                   value={form.name}
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                 />
                 <select
-                  className="border border-gray-400 rounded px-3 py-2 text-black"
+                  className="border border-green-800/50 rounded-lg px-3 py-2 bg-black/20 text-white focus:ring-2 focus:ring-green-500 outline-none transition-all"
                   value={form.teacherId}
                   onChange={e => setForm(f => ({ ...f, teacherId: e.target.value }))}
                   required
                 >
-                  <option value="">Select Teacher</option>
+                  <option value="" className="bg-green-950 text-gray-400">Select Teacher</option>
                   {teachers.map(t => (
-                    <option key={t.id} value={t.id}>{t.name}</option>
+                    <option key={t.id} value={t.id} className="bg-green-950 text-white">{t.name}</option>
                   ))}
                 </select>
               </div>
               <Button
                 type="submit"
-                className="bg-red-600 hover:bg-red-700 text-white rounded-xl w-full mt-2"
+                className="bg-green-600 hover:bg-green-500 text-white rounded-xl w-full mt-2 shadow-lg shadow-green-900/20"
                 disabled={adding}
               >
                 {adding ? <Loader2 className="w-4 h-4 animate-spin inline-block mr-2" /> : null}
@@ -180,69 +182,69 @@ export default function ManageClasses() {
             </form>
           )}
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-pink-100 rounded-lg">
+          <div className="overflow-x-auto rounded-lg border border-white/10">
+            <table className="min-w-full text-sm">
               <thead>
-                <tr className="bg-pink-100">
-                  <th className="py-2 px-4 text-left text-red-600">Name</th>
-                  <th className="py-2 px-4 text-left text-red-600">Teacher</th>
-                  <th className="py-2 px-4 text-red-600">Actions</th>
+                <tr className="bg-white/5 text-green-400 border-b border-white/10">
+                  <th className="py-3 px-4 text-left font-semibold">Name</th>
+                  <th className="py-3 px-4 text-left font-semibold">Teacher</th>
+                  <th className="py-3 px-4 font-semibold">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-white/5">
                 {isLoading ? (
                   <tr>
-                    <td colSpan={3} className="py-4 text-center text-gray-500">
-                      <Loader2 className="w-5 h-5 animate-spin inline-block mr-2" /> Loading...
+                    <td colSpan={3} className="py-8 text-center text-green-500">
+                      <Loader2 className="w-8 h-8 animate-spin inline-block mr-2" /> Loading...
                     </td>
                   </tr>
                 ) : classes.length === 0 ? (
                   <tr>
-                    <td colSpan={3} className="py-4 text-center text-gray-500">No classes found.</td>
+                    <td colSpan={3} className="py-8 text-center text-gray-400">No classes found.</td>
                   </tr>
                 ) : (
                   classes.map(cls => (
-                    <tr key={cls.id} className="border-t border-pink-100">
+                    <tr key={cls.id} className="hover:bg-white/5 transition-colors text-gray-300">
                       {cls.editing ? (
                         <>
-                          <td className="py-2 px-4">
+                          <td className="py-3 px-4">
                             <input
                               type="text"
-                              className="border rounded px-2 py-1 w-full text-black"
+                              className="border border-green-800/50 rounded px-2 py-1 w-full bg-black/20 text-white focus:ring-1 focus:ring-green-500 outline-none"
                               value={cls.editName}
                               onChange={e => handleChange(cls.id, 'editName', e.target.value)}
                             />
                           </td>
-                          <td className="py-2 px-4">
+                          <td className="py-3 px-4">
                             <select
-                              className="border rounded px-2 py-1 w-full text-black"
+                              className="border border-green-800/50 rounded px-2 py-1 w-full bg-black/20 text-white focus:ring-1 focus:ring-green-500 outline-none"
                               value={cls.editTeacherId}
                               onChange={e => handleChange(cls.id, 'editTeacherId', e.target.value)}
                             >
-                              <option value="">Select Teacher</option>
+                              <option value="" className="bg-green-950">Select Teacher</option>
                               {teachers.map(t => (
-                                <option key={t.id} value={t.id}>{t.name}</option>
+                                <option key={t.id} value={t.id} className="bg-green-950">{t.name}</option>
                               ))}
                             </select>
                           </td>
-                          <td className="py-2 px-4 flex gap-2">
-                            <Button className="bg-green-600 hover:bg-green-700 text-white rounded-xl px-3 py-1" onClick={() => handleSave(cls.id)}>
+                          <td className="py-3 px-4 flex gap-2">
+                            <Button className="bg-green-600 hover:bg-green-500 text-white rounded-lg px-3 py-1 text-xs" onClick={() => handleSave(cls.id)}>
                               Save
                             </Button>
-                            <Button className="bg-gray-300 hover:bg-gray-400 text-black rounded-xl px-3 py-1" onClick={() => handleCancel(cls.id)}>
+                            <Button className="bg-white/10 hover:bg-white/20 text-gray-300 rounded-lg px-3 py-1 text-xs border border-white/10" onClick={() => handleCancel(cls.id)}>
                               Cancel
                             </Button>
                           </td>
                         </>
                       ) : (
                         <>
-                          <td className="py-2 px-4 text-black">{cls.name}</td>
-                          <td className="py-2 px-4 text-black">{teachers.find(t => t.name === cls.teacher)?.name || '-'}</td>
-                          <td className="py-2 px-4 flex gap-2">
-                            <Button className="bg-yellow-400 hover:bg-yellow-500 text-white rounded-xl px-3 py-1" onClick={() => handleEdit(cls.id)}>
+                          <td className="py-3 px-4 font-medium text-white">{cls.name}</td>
+                          <td className="py-3 px-4">{teachers.find(t => t.name === cls.teacher)?.name || '-'}</td>
+                          <td className="py-3 px-4 flex gap-2">
+                            <Button className="bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 border border-yellow-500/30 rounded-lg px-3 py-1 text-xs transition-all" onClick={() => handleEdit(cls.id)}>
                               Edit
                             </Button>
-                            <Button className="bg-red-600 hover:bg-red-700 text-white rounded-xl px-3 py-1" onClick={() => handleDelete(cls.id)}>
+                            <Button className="bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 rounded-lg px-3 py-1 text-xs transition-all" onClick={() => handleDelete(cls.id)}>
                               Delete
                             </Button>
                           </td>
@@ -254,8 +256,8 @@ export default function ManageClasses() {
               </tbody>
             </table>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

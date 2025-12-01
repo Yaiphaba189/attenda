@@ -29,7 +29,7 @@ export default function RootLayout({
         <link rel="icon" href="/clock.svg" type="image/svg+xml" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900 min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary-50 text-primary-900 min-h-screen`}
       >
         <Providers>
           {children}

@@ -26,30 +26,31 @@ export default function AttendanceClassSelect() {
   }, [teacherId]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 p-6 text-black">
-      <Card className="max-w-xl mx-auto mt-10">
-        <CardContent className="p-6">
-          <h2 className="text-xl font-bold mb-4 text-red-500">Select a Class to Take Attendance</h2>
+    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900 via-green-950 to-black p-6">
+      <div className="max-w-xl w-full mx-auto">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-8">
+          <h2 className="text-2xl font-bold mb-6 text-white text-center">Select a Class to Take Attendance</h2>
           {loading ? (
-            <div>Loading...</div>
+            <div className="text-center text-green-400">Loading...</div>
           ) : classes.length === 0 ? (
-            <div className="text-black">No classes assigned.</div>
+            <div className="text-center text-gray-400">No classes assigned.</div>
           ) : (
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {classes.map((c) => (
                 <li key={c.id}>
                   <Button
-                    className="w-full justify-start text-black bg-red-100 hover:bg-red-300 hover:text-white"
+                    className="w-full justify-start text-lg py-6 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-green-500/50 transition-all duration-300 group"
                     onClick={() => router.push(`/teacher-dashboard/attendance/${c.id}`)}
                   >
-                    <span className="text-red-500 font-bold">{c.name} (ID: {c.id})</span>
+                    <span className="font-semibold group-hover:text-green-400 transition-colors">{c.name}</span>
+                    <span className="ml-auto text-sm text-gray-500 group-hover:text-green-500/70">ID: {c.id}</span>
                   </Button>
                 </li>
               ))}
             </ul>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

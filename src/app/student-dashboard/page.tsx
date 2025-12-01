@@ -155,77 +155,77 @@ export default function StudentDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50">
+    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-900 via-green-950 to-black text-white">
       <div className="p-6">
-  {/* Header */}
-  <div className="flex items-center justify-between mb-8">
-    <div className="flex items-center space-x-3">
-      <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center transform rotate-12">
-        <div className="w-4 h-4 bg-white rounded-sm"></div>
-      </div>
-      <h1 className="text-2xl font-bold text-gray-800">Student Dashboard</h1>
-      {isLoading && ( 
-        <div className="ml-2 text-sm text-gray-500 flex items-center">
-          <Loader2 className="w-4 h-4 mr-1 animate-spin" />
-          Updating...
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-green-500/20 backdrop-blur-sm border border-green-500/30 rounded-lg flex items-center justify-center transform rotate-12">
+              <div className="w-4 h-4 bg-green-400 rounded-sm shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
+            </div>
+            <h1 className="text-2xl font-bold text-white drop-shadow-md">Student Dashboard</h1>
+            {isLoading && (
+              <div className="ml-2 text-sm text-green-400 flex items-center">
+                <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                Updating...
+              </div>
+            )}
+          </div>
+          <div className="flex items-center space-x-4">
+            <div className="text-right">
+              <div className="text-sm font-medium text-green-100">{profile.name}</div>
+              <div className="text-xs text-green-400/80">{profile.email}</div>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="rounded-xl text-green-400 hover:text-white hover:bg-white/10 transition-colors"
+              onClick={handleLogout}
+              title="Logout"
+            >
+              <LogOut className="w-6 h-6" />
+            </Button>
+          </div>
         </div>
-      )}
-    </div>
-    <div className="flex items-center space-x-4">
-      <div className="text-right">
-        <div className="text-sm font-medium text-gray-800">{profile.name}</div>
-        <div className="text-xs text-gray-500">{profile.email}</div>
-      </div>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50"
-        onClick={handleLogout}
-        title="Logout"
-      >
-        <LogOut className="w-6 h-6" />
-      </Button>
-    </div>
-  </div>
 
-          {/* Main Grid */}
-          <div className="grid grid-cols-1 gap-6">
-            <div className="space-y-6">
-              {/* Time and Date Card */}
-              <Card className="bg-white/80 backdrop-blur-sm border-pink-100 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                      <Sun className="w-4 h-4 text-orange-500" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-gray-800">
-                        <TimeDisplay />
-                      </div>
-                      <div className="text-sm text-gray-500">Realtime Insight</div>
-                    </div>
-                  </div>
-                  <div className="text-lg text-gray-800">{formatDate(currentDate)}</div>
-                </CardContent>
-              </Card>
-            {/* Student Profile */}
-            <Card className="bg-white/80 backdrop-blur-sm border-pink-100 shadow-sm mb-6">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 gap-6">
+          <div className="space-y-6">
+            {/* Time and Date Card */}
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10 shadow-xl hover:bg-white/10 transition-all duration-300">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-black mb-3">Profile</h3>
-                <div className="mb-2"><span className="font-semibold text-black">Name:</span> <span className="text-black">{profile.name}</span></div>
-                <div className="mb-2"><span className="font-semibold text-black">Email:</span> <span className="text-black">{profile.email}</span></div>
-                <div className="mb-2"><span className="font-semibold text-black">Class ID:</span> <span className="text-black">{profile.classId ?? 'N/A'}</span></div>
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center border border-orange-500/30">
+                    <Sun className="w-4 h-4 text-orange-400" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white">
+                      <TimeDisplay />
+                    </div>
+                    <div className="text-sm text-green-400/80">Realtime Insight</div>
+                  </div>
+                </div>
+                <div className="text-lg text-green-100">{formatDate(currentDate)}</div>
+              </CardContent>
+            </Card>
+            {/* Student Profile */}
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10 shadow-xl mb-6">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-white mb-3">Profile</h3>
+                <div className="mb-2"><span className="font-semibold text-green-400">Name:</span> <span className="text-gray-300">{profile.name}</span></div>
+                <div className="mb-2"><span className="font-semibold text-green-400">Email:</span> <span className="text-gray-300">{profile.email}</span></div>
+                <div className="mb-2"><span className="font-semibold text-green-400">Class ID:</span> <span className="text-gray-300">{profile.classId ?? 'N/A'}</span></div>
               </CardContent>
             </Card>
 
             {/* Class Info */}
-            <Card className="bg-white/80 backdrop-blur-sm border-pink-100 shadow-sm mb-6">
-              <CardContent className="p-6 text-black">
-                <h3 className="text-lg font-semibold text-black mb-3">Class Info</h3>
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10 shadow-xl mb-6">
+              <CardContent className="p-6 text-gray-300">
+                <h3 className="text-lg font-semibold text-white mb-3">Class Info</h3>
                 {classInfo ? (
                   <>
-                    <div className="mb-2"><span className="font-semibold">Class Name:</span> <span className="text-black">{classInfo.name}</span></div>
-                    <div className="mb-2"><span className="font-semibold">Teacher:</span> <span className="text-black">{classInfo.teacher ?? 'N/A'}</span></div>
+                    <div className="mb-2"><span className="font-semibold text-green-400">Class Name:</span> <span className="text-gray-300">{classInfo.name}</span></div>
+                    <div className="mb-2"><span className="font-semibold text-green-400">Teacher:</span> <span className="text-gray-300">{classInfo.teacher ?? 'N/A'}</span></div>
                   </>
                 ) : (
                   <div className="text-gray-500">No class assigned.</div>
@@ -234,11 +234,11 @@ export default function StudentDashboard() {
             </Card>
 
             {/* Attendance Percentage */}
-            <Card className="bg-white/80 backdrop-blur-sm border-pink-100 shadow-sm mb-6">
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10 shadow-xl mb-6">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">Attendance This Month</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">Attendance This Month</h3>
                 {attendancePct !== null ? (
-                  <div className="text-2xl font-bold text-green-600">{attendancePct}%</div>
+                  <div className="text-2xl font-bold text-green-400 drop-shadow-sm">{attendancePct}%</div>
                 ) : (
                   <div className="text-gray-500">No attendance data.</div>
                 )}
@@ -246,15 +246,15 @@ export default function StudentDashboard() {
             </Card>
 
             {/* Recent Attendance Records */}
-            <Card className="bg-white/80 backdrop-blur-sm border-pink-100 shadow-sm mb-6">
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10 shadow-xl mb-6">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">Recent Attendance</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">Recent Attendance</h3>
                 {attendanceRecords.length === 0 ? (
                   <div className="text-gray-500">No attendance records found.</div>
                 ) : (
                   <table className="min-w-full text-sm">
                     <thead>
-                      <tr className="text-left text-gray-600">
+                      <tr className="text-left text-green-400">
                         <th className="py-1 px-2">Date</th>
                         <th className="py-1 px-2">Status</th>
                         <th className="py-1 px-2">Subject</th>
@@ -262,10 +262,12 @@ export default function StudentDashboard() {
                     </thead>
                     <tbody>
                       {attendanceRecords.map((rec, idx) => (
-                        <tr key={idx} className="border-b last:border-b-0">
-                          <td className="py-1 px-2 text-black">{rec.date ? new Date(rec.date).toLocaleDateString() : ''}</td>
-                          <td className="py-1 px-2 text-black">{rec.status}</td>
-                          <td className="py-1 px-2 text-black">{rec.subject?.name ?? ''}</td>
+                        <tr key={idx} className="border-b border-white/10 last:border-b-0 hover:bg-white/5 transition-colors">
+                          <td className="py-1 px-2 text-gray-300">{rec.date ? new Date(rec.date).toLocaleDateString() : ''}</td>
+                          <td className={`py-1 px-2 font-medium ${rec.status === 'Present' ? 'text-green-400' :
+                              rec.status === 'Absent' ? 'text-red-400' : 'text-yellow-400'
+                            }`}>{rec.status}</td>
+                          <td className="py-1 px-2 text-gray-300">{rec.subject?.name ?? ''}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -275,18 +277,18 @@ export default function StudentDashboard() {
             </Card>
 
             {/* Notifications */}
-            <Card className="bg-white/80 backdrop-blur-sm border-pink-100 shadow-sm mb-6">
+            <Card className="bg-white/5 backdrop-blur-xl border-white/10 shadow-xl mb-6">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">Notifications</h3>
+                <h3 className="text-lg font-semibold text-white mb-3">Notifications</h3>
                 {notifications.length === 0 ? (
                   <div className="text-gray-500">No notifications found.</div>
                 ) : (
-                  <ul className="divide-y divide-gray-200">
+                  <ul className="divide-y divide-white/10">
                     {notifications.map((notif) => (
-                      <li key={notif.id} className="py-2">
-                        <div className="font-semibold text-gray-900">{notif.title}</div>
-                        <div className="text-gray-700 text-sm">{notif.description}</div>
-                        <div className="text-gray-400 text-xs">{notif.date ? new Date(notif.date).toLocaleString() : ''}</div>
+                      <li key={notif.id} className="py-2 hover:bg-white/5 transition-colors rounded px-2">
+                        <div className="font-semibold text-green-100">{notif.title}</div>
+                        <div className="text-gray-400 text-sm">{notif.description}</div>
+                        <div className="text-gray-600 text-xs mt-1">{notif.date ? new Date(notif.date).toLocaleString() : ''}</div>
                       </li>
                     ))}
                   </ul>
@@ -294,13 +296,13 @@ export default function StudentDashboard() {
               </CardContent>
             </Card>
 
-          
-        
-     
-                </div>
-              </div>
-            </div>
+
+
+
           </div>
-        
-    );
-  }   
+        </div>
+      </div>
+    </div>
+
+  );
+}   
