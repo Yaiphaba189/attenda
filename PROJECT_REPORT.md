@@ -38,6 +38,7 @@
 - **6. CONCLUSION**
   - 6.1 Summary of Achievements
   - 6.2 Future Scope
+- **REFERENCES**
 
 ---
 
@@ -392,3 +393,16 @@ The current implementation of the Attenda Website provides a solid foundation fo
 - **Role-Based Notifications and Messaging**: Implementing an internal messaging or announcement system categorized by user roles can facilitate better communication within the platform.
 
 These enhancements can significantly increase the system's impact and usability, making it a comprehensive tool for academic institutions.
+
+---
+
+## REFERENCES
+
+1.  **Next.js Documentation**: [https://nextjs.org/docs](https://nextjs.org/docs)
+2.  **React Documentation**: [https://react.dev/](https://react.dev/)
+3.  **Node.js Documentation**: [https://nodejs.org/en/docs/](https://nodejs.org/en/docs/)
+4.  **Express.js Documentation**: [https://expressjs.com/](https://expressjs.com/)
+5.  **Prisma Documentation**: [https://www.prisma.io/docs/](https://www.prisma.io/docs/)
+6.  **PostgreSQL Documentation**: [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+7.  **Tailwind CSS Documentation**: [https://tailwindcss.com/docs](https://tailwindcss.com/docs)
+8.  **MDN Web Docs**: [https://developer.mozilla.org/](https://developer.mozilla.org/)
