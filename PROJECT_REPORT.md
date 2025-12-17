@@ -192,10 +192,10 @@ erDiagram
     User ||--o{ LeaveRequest : "requests"
     User ||--o{ Notification : "receives"
     User ||--o{ ActivityLog : "generates"
-    User }|..|{ Class : "teaches/attends"
+    User }|..|{ Classes : "teaches/attends"
 
-    Class ||--o{ Subject : "contains"
-    Class ||--|{ User : "has students"
+    Classes ||--o{ Subject : "contains"
+    Classes ||--|{ User : "has students"
 
     Subject ||--o{ Attendance : "has records"
 
@@ -213,7 +213,7 @@ erDiagram
         string name
     }
 
-    Class {
+    Classes {
         int id PK
         string name
         int teacherId FK
